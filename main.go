@@ -27,17 +27,10 @@ func indexHandler(c *fiber.Ctx, db *sql.DB) error {
 	})
 }
 func postHandler(c *fiber.Ctx, db *sql.DB) error {
-	input := ""
-	if err := c.ParamsParser(&input); err != nil {
-		log.Printf("An error occured: %v", err)
-		return c.SendString(err.Error())
-	}
-	fmt.Printf("%v", input)
-	if input != "" {
-		_, err := db.Exec("INSERT into test VALUES ($1)", input)
-		if err != nil {
-			log.Fatalf("An error occured while executing query: %v", err)
-		}
+
+	_, err := db.Exec("INSERT into test VALUES (toto)")
+	if err != nil {
+		log.Fatalf("An error occured while executing query: %v", err)
 	}
 
 	return c.Redirect("/")
@@ -64,6 +57,7 @@ func main() {
 	})
 
 	app.Post("/", func(c *fiber.Ctx) error {
+		log.Printf("Posting :%s")
 		return postHandler(c, db)
 	})
 
