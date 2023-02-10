@@ -45,6 +45,7 @@ func postHandler(c *fiber.Ctx, db *sql.DB) error {
 
 func main() {
 	log.Print("TOTO DEMARRE")
+	log.Print(os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL") + "?sslmode=disable")
 	db, err := sql.Open("postgres", os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL")+"?sslmode=disable")
 	if err != nil {
 		log.Print(os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL"))
