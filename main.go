@@ -52,7 +52,8 @@ func main() {
 		log.Print(err)
 	}
 
-	_, createErr := db.Exec("CREATE TABLE [IF NOT EXISTS] test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
+	lolilol
+	_, createErr := db.Exec("CREATE TABLE IF NOT EXISTS test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
 	if createErr != nil {
 		log.Fatal(createErr)
 	}
