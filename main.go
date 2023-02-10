@@ -28,7 +28,7 @@ func indexHandler(c *fiber.Ctx, db *sql.DB) error {
 }
 func postHandler(c *fiber.Ctx, db *sql.DB) error {
 	input := ""
-	if err := c.BodyParser(&input); err != nil {
+	if err := c.ParamsParser(&input); err != nil {
 		log.Printf("An error occured: %v", err)
 		return c.SendString(err.Error())
 	}
