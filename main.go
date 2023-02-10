@@ -46,7 +46,7 @@ func postHandler(c *fiber.Ctx, db *sql.DB) error {
 func main() {
 	db, err := sql.Open("postgres", os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL"))
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 
 	_, createErr := db.Exec("CREATE TABLE [IF NOT EXISTS] test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
