@@ -46,6 +46,7 @@ func postHandler(c *fiber.Ctx, db *sql.DB) error {
 func main() {
 	db, err := sql.Open("postgres", os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL"))
 	if err != nil {
+		log.Print(os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL"))
 		log.Print(err)
 	}
 
