@@ -49,6 +49,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	_, createErr := db.Query("CREATE TABLE [IF NOT EXISTS] test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
+	if createErr != nil {
+		log.Fatal(createErr)
+	}
+
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
