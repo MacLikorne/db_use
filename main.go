@@ -44,13 +44,12 @@ func postHandler(c *fiber.Ctx, db *sql.DB) error {
 }
 
 func main() {
-	// Connect to database
 	db, err := sql.Open("postgres", os.Getenv("QOVERY_POSTGRESQL_ZF0F42794_DATABASE_URL_INTERNAL"))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, createErr := db.Query("CREATE TABLE [IF NOT EXISTS] test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
+	_, createErr := db.Exec("CREATE TABLE [IF NOT EXISTS] test (id serial PRIMARY KEY, username VARCHAR ( 50 ) NOT NULL);")
 	if createErr != nil {
 		log.Fatal(createErr)
 	}
