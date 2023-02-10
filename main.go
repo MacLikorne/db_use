@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"database/sql"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
@@ -65,20 +64,9 @@ func main() {
 		return postHandler(c, db)
 	})
 
-	// Create tls certificate
-	cer, err := tls.LoadX509KeyPair("certs/ssl.cert", "certs/ssl.key")
-	if err != nil {
-		log.Fatal(err)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
 	}
-
-	config := &tls.Config{Certificates: []tls.Certificate{cer}}
-
-	// Create custom listener
-	ln, err := tls.Listen("tcp", ":443", config)
-	if err != nil {
-		panic(err)
-	}
-
-	// Start server with https/ssl enabled on http://localhost:443
-	log.Fatal(app.Listener(ln))
+	log.Fatalln(app.Listen(fmt.Sprintf(":%v", port)))
 }
