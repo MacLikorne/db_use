@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 )
-
+// useless comment
 func indexHandler(c *fiber.Ctx, db *sql.DB) error {
 	var res string
 	var results []string
